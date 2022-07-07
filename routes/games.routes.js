@@ -6,7 +6,8 @@ const {
     createGames,
     updateGames,
     deleteGames,
-    createReviews
+    createReviews,
+    assignGameToConsole
 } = require('../controllers/games.controller');
 
 // Middlewares
@@ -23,7 +24,11 @@ gameRouter.post('/', createGames);
 
 gameRouter.post('/reviews/:id', gameExists, createReviews)
 
-gameRouter
+gameRouter.post('/reviews/:id', gameExists, createReviews)
+
+gameRouter.post('/assing-game', assignGameToConsole)
+
+
 	.use('/:id', gameExists)
 	.route('/:id')
 	.patch(updateGames)

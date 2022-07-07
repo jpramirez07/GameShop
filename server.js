@@ -24,8 +24,8 @@ Games.hasMany(Reviews, { foreignKey: 'gameId' });
 Reviews.belongsTo(Games);
 
 // M Games <----> M Consoles
-Games.belongsToMany(Consoles, { foreignKey: 'consoleId', through: 'gameInConsole' });
-Consoles.belongsToMany(Games, { foreignKey: 'gameId', through: 'gameInConsole' });
+Games.belongsToMany(Consoles, { foreignKey: 'gameId', through: 'gameInConsole' });
+Consoles.belongsToMany(Games, { foreignKey: 'consoleId', through: 'gameInConsole' });
 
 db.sync()
 	.then(() => console.log('Db synced'))

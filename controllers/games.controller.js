@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const { Games } = require('../models/game.model');
 const { Consoles } = require('../models/console.model');
 const { Reviews } = require('../models/review.model');
+const { gamesInConsoles } = require('../models/gameInConsole.model');
 
 // Utils
 const { catchAsync } = require('../utils/catchAsync.util');
@@ -71,10 +72,22 @@ const createReviews = catchAsync(async (req, res, next) => {
 	});
 });
 
+const assignGameToConsole = catchAsync(async (req, res, next) => {
+	const { gameId, consoleId } = req.body;
+
+	const gameInConsole = await gamesInConsoles.create({ gameId, consoleId });
+
+	res.status(201).json({
+		status: 'success',
+		gameInConsole,
+	});
+});
+
 module.exports = {
 	getAllGames,
 	createGames,
 	updateGames,
 	deleteGames,
-    createReviews
+    createReviews,
+	assignGameToConsole
 };
