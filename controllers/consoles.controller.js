@@ -25,7 +25,7 @@ const getAllConsoles = catchAsync(async (req, res, next) => {
 const createConsole = catchAsync(async (req, res, next) => {
 	const { name, company } = req.body;
 
-	const newConsole = await User.create({
+	const newConsole = await Consoles.create({
 		name,
         company
 	});

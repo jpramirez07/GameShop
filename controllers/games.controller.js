@@ -26,7 +26,7 @@ const getAllGames = catchAsync(async (req, res, next) => {
 const createGames = catchAsync(async (req, res, next) => {
 	const { title, genre } = req.body;
 
-	const newGame = await User.create({
+	const newGame = await Games.create({
 		title,
         genre
 	});
@@ -57,12 +57,11 @@ const deleteGames = catchAsync(async (req, res, next) => {
 
 const createReviews = catchAsync(async (req, res, next) => {
 	const { comment } = req.body
-    const { sessionUser } = req
-    const { gameId } = req.params
+    const { sessionUser, game } = req
 
 	const newReview = await Reviews.create({
 		comment,
-        gameId,
+        gameId: game.id,
         userId: sessionUser.id
 	});
 

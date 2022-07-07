@@ -21,11 +21,12 @@ gameRouter.use(protectSession);
 
 gameRouter.post('/', createGames);
 
+gameRouter.post('/reviews/:id', gameExists, createReviews)
+
 gameRouter
 	.use('/:id', gameExists)
 	.route('/:id')
 	.patch(updateGames)
-	.delete(deleteGames)
-    .post(createReviews);
+	.delete(deleteGames);
 
 module.exports = { gameRouter };
